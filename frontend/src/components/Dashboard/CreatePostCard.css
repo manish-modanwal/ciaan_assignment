@@ -1,0 +1,69 @@
+
+.create-post-card {
+    background-color: #4e83ff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    padding: 1rem;
+}
+
+.create-post-card h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+.post-form textarea {
+    width: 90%;
+    height: 40px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.file-upload-label {
+    background-color: #429ffc;
+    color: #333;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 200;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+
+.file-upload-label:hover {
+    background-color: #ced4da;
+}
+
+.file-upload-label input {
+    display: none;
+}
+
+.post-form button {
+    background-color: #0077b5;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.post-form button:hover {
+    background-color: #005582;
+}

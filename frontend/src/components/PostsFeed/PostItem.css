@@ -1,0 +1,288 @@
+
+.post-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease-in-out;
+    border: 1px solid #e0e0e0;
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.post-header-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: #f0f2f5; 
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.post-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    flex-grow: 1; 
+    gap: 0.75rem; 
+}
+
+.post-username {
+    font-weight: 600;
+    color: #000;
+    font-size: 1.1rem;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: color 0.2s;
+}
+
+.post-username:hover {
+    color: #0a66c2;
+    text-decoration: underline;
+}
+
+.post-timestamp {
+    color: #65676b;
+    font-size: 0.85rem;
+    margin-left: auto;
+}
+
+/* Follow Button */
+.follow-btn {
+    background-color: #0077b5;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.follow-btn:hover {
+    background-color: #005582;
+}
+
+
+.delete-post-btn {
+    background-color: transparent;
+    color: #65676b;
+    border: none;
+    border-radius: 50%; 
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.delete-post-btn:hover {
+    background-color: #fcebeb;
+    color: #e0245e;
+}
+
+
+.post-content {
+    padding: 1rem 1.5rem;
+}
+
+.post-content p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    color: #111214;
+}
+
+.post-image,
+.post-video {
+    max-height: 500px;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 0 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.like-button,
+.comment-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #65676b;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.like-button:hover,
+.comment-button:hover {
+    background-color: #e9ecef;
+}
+
+.post-actions .liked {
+    color: #0077b5;
+}
+
+
+.comments-section {
+    padding: 1rem 1.5rem 1.5rem;
+    background-color: #f8f9fa;
+}
+
+.comments-list {
+    margin-bottom: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+.comments-list::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.comments-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+    background-color: #ccc; 
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+
+.comments-list::-webkit-scrollbar-thumb:hover {
+    background-color: #999; 
+}
+.comment-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: #dbe4f5; 
+    border-radius: 18px;
+    font-size: 0.85rem; 
+    position: relative;
+    max-width: fit-content; 
+    min-width: 30%; 
+}
+
+.comment-user {
+    font-weight: 700;
+    color: #333;
+    white-space: nowrap; 
+}
+
+.comment-text {
+    line-height: 1.4;
+    color: #444;
+}
+
+
+.delete-comment-btn {
+    background: none;
+    border: none;
+    color: #e0245e;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: auto; 
+    padding: 0;
+    transition: color 0.2s;
+    opacity: 0.7;
+}
+
+.delete-comment-btn:hover {
+    opacity: 1;
+    color: #cc0000;
+}
+
+.comment-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.comment-form input {
+    flex-grow: 1;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    background-color: #fff;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.comment-form input:focus {
+    outline: none;
+    border-color: #0077b5;
+}
+
+.comment-form button {
+    background-color: #0077b5;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.comment-form button:hover {
+    background-color: #005582;
+}
+
+
+@media (max-width: 768px) {
+    .post-card {
+        margin-bottom: 1rem;
+    }
+    .post-header-top,
+    .post-content,
+    .post-actions,
+    .comments-section {
+        padding: 1rem;
+    }
+    .post-content p {
+        font-size: 1rem;
+    }
+    .comment-item {
+        max-width: 85%;
+    }
+}
+
+.delete-post-btn{
+background-color: rgb(233, 110, 110);
+color: white;
+
+}

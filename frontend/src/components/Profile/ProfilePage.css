@@ -1,0 +1,190 @@
+.profile-page-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #e3dddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    border: 1px solid gray;
+
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    background-color: #91c7f7;
+    padding: 20px;
+    border-radius: 18px;
+}
+
+.profile-avatar-lg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #337ab7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.profile-name {
+    font-size: 2.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.profile-bio {
+    font-size: 1rem;
+    color: #777;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #337ab7;
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.loading,
+.error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 2rem;
+}
+
+
+
+
+.profile-posts {
+    margin-top: 3rem;
+}
+
+.no-posts-message {
+    text-align: center;
+    color: #777;
+    font-size: 1.1rem;
+    padding-top: 2rem;
+}
+
+/* src/components/Profile/ProfilePage.css */
+
+/* ... baaki styles waise hi rahenge */
+
+.edit-profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.edit-profile-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.edit-profile-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.edit-profile-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.edit-profile-form input,
+.edit-profile-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.edit-profile-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.edit-profile-form .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.edit-profile-form button {
+    width: 100%;
+    padding: 12px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-form button[type="submit"] {
+    background-color: #337ab7;
+}
+
+.edit-profile-form button[type="submit"]:hover {
+    background-color: #286090;
+}
+
+.edit-profile-form button.cancel-btn {
+    background-color: #888;
+}
+
+.edit-profile-form button.cancel-btn:hover {
+    background-color: #666;
+}
+
+.edit-profile-form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #d9534f;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.edit-profile-btn{
+    color: #000000;
+    background-color: rgb(0, 145, 255);
+    padding: 7px;
+    border-radius: 6px;
+}
