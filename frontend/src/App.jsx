@@ -54,9 +54,14 @@ setIsAuthenticated(false);
 setUser(null);
 };
 
-if (loading) {
-return <div>Loading...</div>;
-}
+ if (loading) {
+    return (
+      <div className="main-loading-container">
+        <p className="main-loading-text">Loading...</p>
+      </div>
+     
+    );
+  }
 
 return (
 <div className="App">
