@@ -22,3 +22,17 @@ body {
     flex-direction: column;
     gap: 1.5rem;
 }
+
+/* PostsFeed.css */
+
+/* Loading container jo poori viewport height le aur content ko center kare */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Poori screen ki height le */
+  font-family: Arial, sans-serif;
+  color: #555;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
