@@ -3,102 +3,74 @@ const User = require('../models/User');
 const Notification = require('../models/Notification');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
+const Profile = require('../models/Profile');
+const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 
 
 exports.createPost = async (req, res) => {
- try {
-  const user = await User.findById(req.user.id).select('-password');
-  const profile = await Profile.findOne({ user: req.user.id });
-  const { text } = req.body;
-  let postData = { user: req.user.id, name: user.name, avatar: profile.avatar };
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        const profile = await Profile.findOne({ user: req.user.id });
+        const { text } = req.body;
+        let postData = { user: req.user.id, name: user.name, avatar: profile.avatar };
 
-  if (text) {
-   postData.text = text;
-  }
+        if (text) {
+            postData.text = text;
+        }
 
-  if (req.files && req.files.image) {
-   const uploadedFile = req.files.image;
-   const fileExtension = path.extname(uploadedFile.name);
-   const fileName = `${uuidv4()}${fileExtension}`;
-   
-   const uploadDir = path.join(process.cwd(), 'uploads');
-   if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
-   }
-   
-   const uploadPath = path.join(uploadDir, fileName);
+        if (req.files && req.files.image) {
+            const uploadedFile = req.files.image;
 
-   uploadedFile.mv(uploadPath, async (err) => {
-    if (err) {
-     console.error('File move failed:', err);
-     return res.status(500).send('Server Error during file move');
+            // Cloudinary par upload karein
+            const result = await cloudinary.uploader.upload(uploadedFile.tempFilePath, {
+                folder: 'linkedin-clone/posts',
+                resource_type: 'auto'
+            });
+            
+            // Ab poora secure URL save karein database mein
+            const fileUrl = result.secure_url;
+
+            if (uploadedFile.mimetype.startsWith('video')) {
+                postData.video = { url: fileUrl };
+            } else {
+                postData.image = { url: fileUrl };
+            }
+        } else {
+            if (!postData.text) {
+                return res.status(400).json({ msg: 'Post cannot be empty' });
+            }
+        }
+        
+        const newPost = new Post(postData);
+        const post = await newPost.save();
+        return res.json(post);
+
+    } catch (err) {
+        console.error('General server error:', err.message);
+        res.status(500).send('Server Error');
     }
-    
-    const fileUrl = `/uploads/${fileName}`;
-
-    if (uploadedFile.mimetype.startsWith('video')) {
-     postData.video = { url: fileUrl };
-    } else {
-     postData.image = { url: fileUrl };
-    }
-
-    const newPost = new Post(postData);
-    const post = await newPost.save();
-    return res.json(post);
-   });
-  } else {
-   if (!postData.text) {
-     return res.status(400).json({ msg: 'Post cannot be empty' });
-   }
-   const newPost = new Post(postData);
-   const post = await newPost.save();
-   return res.json(post);
-  }
-
- } catch (err) {
-  console.error('General server error:', err.message);
-  res.status(500).send('Server Error');
- }
 };
 
 
+// `getAllPosts` function ko is code se replace karein
 exports.getAllPosts = async (req, res) => {
- try {
-  const posts = await Post.find()
-   .sort({ createdAt: -1 })
-   .populate('user', ['name']);
-  
-  const postsWithAvatars = await Promise.all(
-   posts.map(async (post) => {
-    if (!post.user) {
-    
-     return {
-      ...post.toObject(),
-      user: {
-       name: 'Deleted User',
-       avatar: 'https://www.gravatar.com/avatar?d=mp'
-      }
-     };
-    }
-    const profile = await Profile.findOne({ user: post.user._id });
-    return {
-     ...post.toObject(),
-     user: {
-      ...post.user.toObject(),
-      avatar: profile ? profile.avatar : 'https://www.gravatar.com/avatar?d=mp'
-     }
-    };
-   })
-  );
-  
-  res.json(postsWithAvatars);
+    try {
+        const posts = await Post.find()
+            .populate('user', ['name', 'avatar'])
+            .sort({ createdAt: -1 });
 
- } catch (err) {
-  console.error(err.message);
-  res.status(500).send('Server error');
- }
+        // Yahan console.log lagayein
+        console.log('Posts data sent to frontend:', posts);
+        
+        res.json(posts);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
 };
+
 
 exports.deletePost = async (req, res) => {
     try {

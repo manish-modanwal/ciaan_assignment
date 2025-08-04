@@ -45,7 +45,7 @@ const ProfileCard = () => {
                     alt="Profile" 
                     className="profile-pic" 
                 />
-                <h7 className="profile-name">{profile.user.name}</h7>
+                <h3 className="profile-name">{profile.user.name}</h3>
             </div>
             <p className="profile-bio">{profile.bio || 'No bio provided.'}</p>
             <div className="profile-stats">

@@ -146,81 +146,92 @@ const PostItem = ({ post: initialPost }) => {
     };
 
     return (
-        <div className="post-card">
-            <div className="post-header-top">
-                <img 
-                    src={post.user?.avatar} 
-                    alt="User Avatar" 
-                    className="post-avatar" 
-                />
-                <div className="user-info">
-                    <Link to={`/profile/${post.user._id}`} className="post-username">
-                        {post.user.name}
-                    </Link>
-                    {!isOwner && (
-                        <button onClick={handleFollow} className="follow-btn">
-                            {isFollowing ? 'Following' : 'Follow'}
-                        </button>
-                    )}
-                    <span className="post-timestamp">
-                        {new Date(post.createdAt).toLocaleDateString()}
-                    </span>
-                </div>
-                {isOwner && (
-                    <button onClick={handleDeletePost} className="delete-post-btn">
-                        Delete
-                    </button>
-                )}
-            </div>
-            <div className="post-content">
-                <p>{post.text}</p>
-               
-                {post.image && <img src={`${API_URL}${post.image.url}`} alt="Post" className="post-image" />}
-                {post.video && <video src={`${API_URL}${post.video.url}`} controls className="post-video" />}
-            </div>
-            <div className="post-actions">
-                <button 
-                    className={`like-button ${isLiked ? 'liked' : ''}`} 
-                    onClick={handleLike}
-                >
-                    <FaHeart /> Like ({post.likes?.length || 0})
-                </button>
-                <button 
-                    className="comment-button" 
-                    onClick={() => setShowComments(!showComments)}
-                >
-                    <FaComment /> Comment ({post.comments?.length || 0})
-                </button>
-            </div>
-
-            {showComments && (
-                <div className="comments-section">
-                    <div className="comments-list">
-                        {post.comments?.map((comment) => (
-                            <div key={comment._id} className="comment-item">
-                                <span className="comment-user">{comment.name}</span>
-                                <span className="comment-text">{comment.text}</span>
-                                {comment.user === myId && (
-                                    <button onClick={() => handleDeleteComment(comment._id)} className="delete-comment-btn">
-                                        Delete
-                                    </button>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    <form onSubmit={handleCommentSubmit} className="comment-form">
-                        <input
-                            type="text"
-                            placeholder="Write a comment..."
-                            value={commentText}
-                            onChange={(e) => setCommentText(e.target.value)}
-                        />
-                        <button type="submit">Post</button>
-                    </form>
-                </div>
+   <div className="post-card">
+      <div className="post-header-top">
+         <img 
+            src={post.user?.avatar} 
+            alt="User Avatar" 
+            className="post-avatar" 
+         />
+         <div className="user-info">
+            <Link to={`/profile/${post.user._id}`} className="post-username">
+               {post.user.name}
+            </Link>
+            {!isOwner && (
+               <button onClick={handleFollow} className="follow-btn">
+                  {isFollowing ? 'Following' : 'Follow'}
+               </button>
             )}
-        </div>
-    );
+            <span className="post-timestamp">
+               {new Date(post.createdAt).toLocaleDateString()}
+            </span>
+         </div>
+         {isOwner && (
+            <button onClick={handleDeletePost} className="delete-post-btn">
+               Delete
+            </button>
+         )}
+      </div>
+      <div className="post-content">
+         <p>{post.text}</p>
+        
+         {post.image && post.image.url && (
+            <img 
+               src={post.image.url.startsWith('http') ? post.image.url : `${API_URL}${post.image.url}`} 
+               alt="Post" 
+               className="post-image" 
+            />
+         )}
+         {post.video && post.video.url && (
+            <video 
+               src={post.video.url.startsWith('http') ? post.video.url : `${API_URL}${post.video.url}`} 
+               controls 
+               className="post-video" 
+            />
+         )}
+      </div>
+      <div className="post-actions">
+         <button 
+            className={`like-button ${isLiked ? 'liked' : ''}`} 
+            onClick={handleLike}
+         >
+            <FaHeart /> Like ({post.likes?.length || 0})
+         </button>
+         <button 
+            className="comment-button" 
+            onClick={() => setShowComments(!showComments)}
+         >
+            <FaComment /> Comment ({post.comments?.length || 0})
+         </button>
+      </div>
+      {showComments && (
+         <div className="comments-section">
+            <div className="comments-list">
+               {post.comments?.map((comment) => (
+                  <div key={comment._id} className="comment-item">
+                     <span className="comment-user">{comment.name}</span>
+                     <span className="comment-text">{comment.text}</span>
+                     {comment.user === myId && (
+                        <button onClick={() => handleDeleteComment(comment._id)} className="delete-comment-btn">
+                           Delete
+                        </button>
+                     )}
+                  </div>
+               ))}
+            </div>
+            <form onSubmit={handleCommentSubmit} className="comment-form">
+               <input
+                  type="text"
+                  placeholder="Write a comment..."
+                  value={commentText}
+                  onChange={(e) => setCommentText(e.target.value)}
+               />
+               <button type="submit">Post</button>
+            </form>
+         </div>
+      )}
+   </div>
+);
 };
 
 export default PostItem;
